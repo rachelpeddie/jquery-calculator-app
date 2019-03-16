@@ -2,9 +2,11 @@ console.log('js');
 
 $(document).ready(start);
 
+let operation;
+
 function start() {
     console.log('jq');
-    // $('#addition-btn').on('click', );
+    $('#addition-btn').on('click', );
 }
 
 // function to post input values to server, on response, run function getAllEquations and empty input values
@@ -16,7 +18,8 @@ function addEquation(){
         url: '/equations',
         data: {
             number1: number1,
-            number2: number2
+            number2: number2,
+            operation: operation
         }
     }).then(function(response){
         getAllEquations();
@@ -28,3 +31,18 @@ function addEquation(){
         alert((`Whoops, this didn't work!`))
     }) // end ajax post
 } // end addEquation
+
+// equation to get array of equations from server and render equations
+function getAllEquations() {
+    $.ajax({
+        method: 'GET',
+        url: '/equations',
+    }).then(function(response){
+        renderAllEquations(response);
+        console.log(`Here's your equations: ${response}`);
+    }).catch(function(response){
+        console.log(`Whoops, this didn't work!`);
+        alert(`Whoops, this didn't work!`);  
+    }) // end ajax get
+} // end getAllEquations
+
