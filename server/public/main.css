@@ -3,3 +3,21 @@ body{
     background-color: #f3bba7;
     color: #e04632;
 }
+
+input{
+    padding-left: 4px;
+    border: none;
+    border-radius: 5px;
+    height: 15px;
+}
+
+button{
+    width: 40px;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover{
+    background-color: #e04632;
+    color: #fff;
+}

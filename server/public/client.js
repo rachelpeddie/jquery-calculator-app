@@ -3,10 +3,12 @@ console.log('js');
 $(document).ready(start);
 
 let operation;
+let answer;
 
 function start() {
     console.log('jq');
     $('.operation-btn').on('click', operationClick);
+    $('#submit-btn').on('click', addEquation);
 }
 
 // function to determine which button was clicked and set operation property
@@ -45,7 +47,8 @@ function addEquation() {
         data: {
             number1: number1,
             number2: number2,
-            operation: operation
+            operation: operation,
+            answer: answer
         }
     }).then(function (response) {
         getAllEquations();
@@ -65,10 +68,18 @@ function getAllEquations() {
         url: '/equations',
     }).then(function (response) {
         renderAllEquations(response);
-        console.log(`Here's your equations: ${response}`);
+        console.log(`Here's your equations:`, response);
     }).catch(function (response) {
         console.log(`Whoops, this didn't work!`);
         alert(`Whoops, this didn't work!`);
     }) // end ajax get
 } // end getAllEquations
 
+// function to render all equations to DOM
+function renderAllEquations(equationArray) {
+    $('#completedEquations').empty();
+    for(equation of equationArray){
+        let completedEquations = `<li>${equation.number1} ${equation.operation} ${equation.number2} = ${equation.answer} </li>`;
+    $('#completedEquations').append(completedEquations);
+    }
+}
