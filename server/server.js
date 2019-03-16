@@ -38,7 +38,7 @@ function equationExecution(number1, number2, operation) {
             break;
     }
     console.log('answer');
-    return answer;
+    return answer.toFixed(2);
 }
 
 app.get('/equations', (req, res) => {
