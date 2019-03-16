@@ -6,11 +6,37 @@ let operation;
 
 function start() {
     console.log('jq');
-    $('#addition-btn').on('click', );
+    $('.operation-btn').on('click', operationClick);
 }
 
+// function to determine which button was clicked and set operation property
+function operationClick() {
+    switch (this.id) {
+        case 'addition-btn':
+            operation = '+';
+            console.log(`we're doing some addition!`);
+            break;
+
+        case 'subraction-btn':
+            operation = '-';
+            console.log(`we're doing some subtraction!`);
+            break;
+
+        case 'multiplication-btn':
+            operation = '*';
+            console.log(`we're doing some multiplication!`);
+            break;
+
+        case 'division-btn':
+            operation = '/';
+            console.log(`we're doing some division!`);
+            break;
+    }
+}
+
+
 // function to post input values to server, on response, run function getAllEquations and empty input values
-function addEquation(){
+function addEquation() {
     let number1 = $('#first-number').val();
     let number2 = $('#second-number').val();
     $.ajax({
@@ -21,12 +47,12 @@ function addEquation(){
             number2: number2,
             operation: operation
         }
-    }).then(function(response){
+    }).then(function (response) {
         getAllEquations();
         console.log('Woot! addEquation worked!');
         number1 = $('#first-number').val('');
         number2 = $('#second-number').val('');
-    }).catch(function(response){
+    }).catch(function (response) {
         console.log(`Whoops, this didn't work!`);
         alert((`Whoops, this didn't work!`))
     }) // end ajax post
@@ -37,12 +63,12 @@ function getAllEquations() {
     $.ajax({
         method: 'GET',
         url: '/equations',
-    }).then(function(response){
+    }).then(function (response) {
         renderAllEquations(response);
         console.log(`Here's your equations: ${response}`);
-    }).catch(function(response){
+    }).catch(function (response) {
         console.log(`Whoops, this didn't work!`);
-        alert(`Whoops, this didn't work!`);  
+        alert(`Whoops, this didn't work!`);
     }) // end ajax get
 } // end getAllEquations
 
