@@ -17,6 +17,11 @@ button{
     border-radius: 4px;
 }
 
+#clearHistory{
+    margin-top: 10px;
+    width: 100px;
+}
+
 button:hover{
     background-color: #e04632;
     color: #fff;

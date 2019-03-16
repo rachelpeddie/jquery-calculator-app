@@ -55,3 +55,7 @@ app.post('/equations', (req, res) => {
     res.sendStatus(201);
 })
 
+app.delete('/equations', (req, res) => {
+    equationArray = [];
+    res.sendStatus(201);
+})

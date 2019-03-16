@@ -9,6 +9,7 @@ function start() {
     console.log('jq');
     $('.operation-btn').on('click', operationClick);
     $('#submit-btn').on('click', addEquation);
+    $('#clearHistory').on('click', deleteAllEquations);
 }
 
 // function to determine which button was clicked and set operation property
@@ -83,9 +84,25 @@ function getAllEquations() {
 // function to render all equations to DOM
 function renderAllEquations(equationArray) {
     $('#completedEquations').empty();
-    $('#answer').append(`<h1>${equationArray[equationArray.length-1].answer}</h1>`);
+    $('#answer').empty();
+    $('#answer').append(`<h1>${(equationArray[equationArray.length-1]).answer}</h1>`);
     for(equation of equationArray){
-        let completedEquations = `<li>${equation.number1} ${equation.operation} ${equation.number2} = ${equation.answer} </li>`;
+        let completedEquations = `<li>${equation.number1} ${equation.operation} ${equation.number2} = ${equation.answer}</li>`;
     $('#completedEquations').append(completedEquations);
     }
+}
+
+// function to empty array and reappend on clearHistory button
+function deleteAllEquations(){
+    $.ajax({
+        method: 'delete',
+        url: '/equations'
+    }).then(function(response){
+        $('#completedEquations').empty();
+        $('#answer').empty();
+        console.log('array should be empty!');
+    }).catch(function(response){
+        console.log(`Whoops, this didn't work!`);
+        alert(`Whoops, this didn't work!`);
+    })
 }
