@@ -78,6 +78,7 @@ function getAllEquations() {
 // function to render all equations to DOM
 function renderAllEquations(equationArray) {
     $('#completedEquations').empty();
+    $('#answer').append(`<h1>${equationArray[equationArray.length-1].answer}</h1>`);
     for(equation of equationArray){
         let completedEquations = `<li>${equation.number1} ${equation.operation} ${equation.number2} = ${equation.answer} </li>`;
     $('#completedEquations').append(completedEquations);
