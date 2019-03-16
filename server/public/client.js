@@ -41,7 +41,11 @@ function operationClick() {
 function addEquation() {
     let number1 = $('#first-number').val();
     let number2 = $('#second-number').val();
-    $.ajax({
+    if (number1 === ''|| number2 === ''){
+        alert(`You need to enter two numbers`)
+    }
+    else{
+        $.ajax({
         method: 'POST',
         url: '/equations',
         data: {
@@ -59,6 +63,7 @@ function addEquation() {
         console.log(`Whoops, this didn't work!`);
         alert((`Whoops, this didn't work!`))
     }) // end ajax post
+}
 } // end addEquation
 
 // equation to get array of equations from server and render equations
