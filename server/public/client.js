@@ -9,6 +9,7 @@ function start() {
     console.log('jq');
     $('.operation-btn').on('click', operationClick);
     $('#submit-btn').on('click', addEquation);
+    $('#clear-btn').on('click', emptyInputs);
     $('#clearHistory').on('click', deleteAllEquations);
 }
 
@@ -37,6 +38,10 @@ function operationClick() {
     }
 }
 
+function emptyInputs(){
+    $('#first-number').val('');
+    $('#second-number').val('');
+} // end emptyInputs
 
 // function to post input values to server, on response, run function getAllEquations and empty input values
 function addEquation() {
