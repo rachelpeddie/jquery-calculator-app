@@ -8,13 +8,26 @@ input{
     padding-left: 4px;
     border: none;
     border-radius: 5px;
-    height: 15px;
+    width: 123px;
+    height: 18px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+input::placeholder{
+    color: #e04632;
 }
 
 button{
     width: 40px;
+    height: 18px;
+    margin-top: 8px;
     border: none;
     border-radius: 4px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
 }
 
 #clearHistory{
@@ -23,8 +36,14 @@ button{
 }
 
 button:hover{
+    color: #e04632;
+    border: 1px solid #e04632;
+}
+
+#submit-btn:hover{
     background-color: #e04632;
     color: #fff;
+    border: none;
 }
 
 ul {
