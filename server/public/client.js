@@ -63,8 +63,7 @@ function addEquation() {
         }).then(function (response) {
             getAllEquations();
             console.log('Woot! addEquation worked!');
-            number1 = $('#first-number').val('');
-            number2 = $('#second-number').val('');
+            emptyInputs();
         }).catch(function (response) {
             console.log(`Whoops, this didn't work!`);
             alert((`Whoops, this didn't work!`))
