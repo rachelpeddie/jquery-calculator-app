@@ -38,7 +38,7 @@ function operationClick() {
     }
 }
 
-function emptyInputs(){
+function emptyInputs() {
     $('#first-number').val('');
     $('#second-number').val('');
 } // end emptyInputs
@@ -47,29 +47,29 @@ function emptyInputs(){
 function addEquation() {
     let number1 = $('#first-number').val();
     let number2 = $('#second-number').val();
-    if (number1 === ''|| number2 === ''){
+    if (number1 === '' || number2 === '') {
         alert(`You need to enter two numbers`)
     }
-    else{
+    else {
         $.ajax({
-        method: 'POST',
-        url: '/equations',
-        data: {
-            number1: number1,
-            number2: number2,
-            operation: operation,
-            answer: answer
-        }
-    }).then(function (response) {
-        getAllEquations();
-        console.log('Woot! addEquation worked!');
-        number1 = $('#first-number').val('');
-        number2 = $('#second-number').val('');
-    }).catch(function (response) {
-        console.log(`Whoops, this didn't work!`);
-        alert((`Whoops, this didn't work!`))
-    }) // end ajax post
-}
+            method: 'POST',
+            url: '/equations',
+            data: {
+                number1: number1,
+                number2: number2,
+                operation: operation,
+                answer: answer
+            }
+        }).then(function (response) {
+            getAllEquations();
+            console.log('Woot! addEquation worked!');
+            number1 = $('#first-number').val('');
+            number2 = $('#second-number').val('');
+        }).catch(function (response) {
+            console.log(`Whoops, this didn't work!`);
+            alert((`Whoops, this didn't work!`))
+        }) // end ajax post
+    }
 } // end addEquation
 
 // equation to get array of equations from server and render equations
@@ -90,23 +90,23 @@ function getAllEquations() {
 function renderAllEquations(equationArray) {
     $('#completedEquations').empty();
     $('#answer').empty();
-    $('#answer').append(`<h1>${(equationArray[equationArray.length-1]).answer}</h1>`);
-    for(equation of equationArray){
+    $('#answer').append(`<h1>${(equationArray[equationArray.length - 1]).answer}</h1>`);
+    for (equation of equationArray) {
         let completedEquations = `<li>${equation.number1} ${equation.operation} ${equation.number2} = ${equation.answer}</li>`;
-    $('#completedEquations').append(completedEquations);
+        $('#completedEquations').append(completedEquations);
     }
 }
 
 // function to empty array and reappend on clearHistory button
-function deleteAllEquations(){
+function deleteAllEquations() {
     $.ajax({
         method: 'delete',
         url: '/equations'
-    }).then(function(response){
+    }).then(function (response) {
         $('#completedEquations').empty();
         $('#answer').empty();
         console.log('array should be empty!');
-    }).catch(function(response){
+    }).catch(function (response) {
         console.log(`Whoops, this didn't work!`);
         alert(`Whoops, this didn't work!`);
     })
